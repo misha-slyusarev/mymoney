@@ -1,3 +1,4 @@
+require "mymoney/arithmetics"
 require "mymoney/exceptions"
 require "mymoney/version"
 require "mymoney/money"
