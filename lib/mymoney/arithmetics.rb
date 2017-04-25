@@ -17,13 +17,13 @@ module Mymoney::Arithmetics
   [:>, :<].each do |op|
     define_method(op) do |other|
       raise TypeError unless other.is_a?(Mymoney::Money)
-      amount_full.public_send(op, other.amount_full)
+      amount.public_send(op, other.amount)
     end
   end
 
   def ==(other)
     raise TypeError unless other.is_a?(Mymoney::Money)
     other = other.exchange_to(currency) unless other.currency == currency
-    amount_full == other.amount_full
+    amount == other.amount
   end
 end
