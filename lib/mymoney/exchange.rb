@@ -15,7 +15,7 @@ module Mymoney::Exchange
     end
   end
 
-  def exchange_to(new_currency)
+  def convert_to(new_currency)
     if EXCHANGE_TABLE[@currency].nil?
       raise Mymoney::NoExchangeRateError, "No rates for current currency #{@currency}"
     end
