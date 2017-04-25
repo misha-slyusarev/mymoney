@@ -25,7 +25,7 @@ module Mymoney::Exchange
     end
 
     rate = EXCHANGE_TABLE[@currency][new_currency]
-    new_amount = @amount * BigDecimal.new(rate, DEFAULT_PRECISION)
+    new_amount = @amount * BigDecimal.new(rate, Mymoney::Money::DEFAULT_PRECISION)
     Mymoney::Money.new(new_amount, new_currency)
   end
 end
