@@ -14,7 +14,8 @@ class Mymoney::Money
   end
 
   def to_s
-    "#{self.amount} #{@currency}"
+    amount = self.amount.to_i == self.amount ? self.amount.to_i : self.amount
+    "#{amount} #{@currency}"
   end
 
   def inspect
