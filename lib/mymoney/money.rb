@@ -2,10 +2,14 @@ class Mymoney::Money
   include Mymoney::Arithmetics
   include Mymoney::Exchange
 
+  # Default precision will be determined
+  # by BigDecimal based on provided amount
+  DEFAULT_PRECISION = 0
+
   attr_reader :currency
 
   def initialize(amount, currency)
-    @amount = BigDecimal.new(amount, 0)
+    @amount = BigDecimal.new(amount, DEFAULT_PRECISION)
     @currency = currency
   end
 

@@ -21,11 +21,11 @@ module Mymoney::Exchange
     end
     if EXCHANGE_TABLE[@currency][new_currency].nil?
       raise Mymoney::NoExchangeRateError, "Can't find rate for #{new_currency}" \
-        " to exchange from #{@currency}"
+        " to convert from #{@currency}"
     end
 
     rate = EXCHANGE_TABLE[@currency][new_currency]
-    new_amount = @amount * BigDecimal.new(rate, 0)
+    new_amount = @amount * BigDecimal.new(rate, DEFAULT_PRECISION)
     Mymoney::Money.new(new_amount, new_currency)
   end
 end
