@@ -1,5 +1,6 @@
 class Mymoney::Money
   include Mymoney::Arithmetics
+  include Mymoney::Exchange
 
   attr_reader :currency
 
@@ -22,19 +23,5 @@ class Mymoney::Money
 
   def amount_full
     @amount
-  end
-
-  def convert_to(new_currency)
-    if Mymoney::EXCHANGE_TABLE[@currency].nil?
-      raise Mymoney::NoExchangeRateError, "No rates for current currency #{@currency}"
-    end
-    if Mymoney::EXCHANGE_TABLE[@currency][new_currency].nil?
-      raise Mymoney::NoExchangeRateError, "Can't find rate for #{new_currency}" \
-        " to convert from #{@currency}"
-    end
-
-    rate = Mymoney::EXCHANGE_TABLE[@currency][new_currency]
-    new_amount = @amount * BigDecimal.new(rate, 0)
-    Mymoney::Money.new(new_amount, new_currency)
   end
 end
