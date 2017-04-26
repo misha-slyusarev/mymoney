@@ -14,11 +14,18 @@ module Mymoney::Arithmetics
     end
   end
 
-  [:>, :<, :==].each do |op|
+  [:>, :<].each do |op|
     define_method(op) do |other|
+      puts other
       raise TypeError unless other.is_a?(Mymoney::Money)
       other = other.convert_to(currency) unless other.currency == currency
       amount.public_send(op, other.amount)
     end
+  end
+
+  def ==(other)
+    return false unless other.is_a?(Mymoney::Money)
+    other = other.convert_to(currency) unless other.currency == currency
+    amount == other.amount
   end
 end
